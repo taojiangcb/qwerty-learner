@@ -33,6 +33,7 @@ export default defineConfig(async ({ mode }) => {
       outDir: 'build',
       sourcemap: false,
     },
+    base: '/',
     esbuild: {
       drop: mode === 'development' ? [] : ['console', 'debugger'],
     },
