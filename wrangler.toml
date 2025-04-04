@@ -1,0 +1,17 @@
+name = "qwerty-learner"
+type = "pages-project"
+account_id = "8942b20d59a9aa841ddd3bbebb2e41cc" # 你需要填入自己的Cloudflare账户ID
+
+[build]
+command = "yarn config set version 1.22.22 && yarn install --ignore-engines --network-timeout 100000 && yarn build"
+
+[build.environment]
+NODE_VERSION = "18"
+YARN_VERSION = "1.22.22"
+CI = "false"
+
+[site]
+bucket = "./build"
+
+[build.upload]
+format = "service-worker"

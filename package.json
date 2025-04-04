@@ -59,6 +59,8 @@
   "scripts": {
     "dev": "vite",
     "start": "vite",
+    "pages:dev": "wrangler pages dev --compatibility-date=2024-01-01 ./build",
+    "pages:deploy": "wrangler pages deploy ./build",
     "build": "yarn config set version 1.22.22 && yarn install --ignore-engines --network-timeout 100000 && cross-env CI=false vite build --base=./",
     "test": "echo \"No tests\"",
     "test:e2e": "playwright test",
@@ -84,6 +86,8 @@
     ]
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20231218.0",
+    "wrangler": "^3.22.1",
     "@iconify/json": "^2.2.242",
     "@playwright/test": "^1.40.1",
     "@svgr/core": "^7.0.0",
