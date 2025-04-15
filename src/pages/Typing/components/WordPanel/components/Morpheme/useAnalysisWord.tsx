@@ -1,7 +1,7 @@
-import { Word } from '@/typings'
+import type { Word } from '@/typings'
 import type { MorphemeAnalysisOutput } from '@/typings/morphemeAnalysis'
 import { useMorphemeAnalysis } from '@/utils/db/morpheme'
-import React, { useEffect, useState, useCallback, useRef } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 const LLM_API = import.meta.env.VITE_LANGCHAIN_API_URL
 

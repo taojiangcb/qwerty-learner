@@ -2,8 +2,10 @@ import useAnalysisWord from './useAnalysisWord'
 import { LoadingUI } from '@/components/Loading'
 import { Button } from '@/components/ui/button'
 // import Loading from '@/components/Loading'
-import { Word } from '@/typings'
-import React, { PropsWithChildren, useEffect, useState, useMemo, ReactElement } from 'react'
+import type { Word } from '@/typings'
+import type { PropsWithChildren, ReactElement } from 'react'
+import type React from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 interface MorphemeParseProps extends PropsWithChildren {
   word: Word
@@ -15,7 +17,7 @@ const MorphemeParse: React.FC<MorphemeParseProps> = (props) => {
 
   const ui_morphemes = useMemo(() => {
     const parts: ReactElement[] = []
-    let composed: string = ''
+    let composed = ''
     if (error) {
       return (
         <div>
