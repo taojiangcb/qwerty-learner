@@ -1,6 +1,6 @@
 {
   "name": "qwerty-learner",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "homepage": ".",
   "dependencies": {
@@ -59,9 +59,7 @@
   "scripts": {
     "dev": "vite",
     "start": "vite",
-    "pages:dev": "wrangler pages dev --compatibility-date=2024-01-01 ./build",
-    "pages:deploy": "wrangler pages deploy ./build",
-    "build": "yarn config set version 1.22.22 && yarn install --ignore-engines --network-timeout 100000 && cross-env CI=false vite build --base=./",
+    "build": "cross-env CI=false vite build --base=./",
     "test": "echo \"No tests\"",
     "test:e2e": "playwright test",
     "lint": "eslint .",

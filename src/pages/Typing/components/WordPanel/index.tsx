@@ -2,6 +2,7 @@ import { TypingContext, TypingStateActionType } from '../../store'
 import type { TypingState } from '../../store/type'
 import PrevAndNextWord from '../PrevAndNextWord'
 import Progress from '../Progress'
+import MorphemeParse from './components/Morpheme'
 import Phonetic from './components/Phonetic'
 import Translation from './components/Translation'
 import WordComponent from './components/Word'
@@ -170,9 +171,10 @@ export default function WordPanel() {
                 </div>
               </div>
             )}
-            <div className="relative">
+            <div className="relative flex flex-col">
               <WordComponent word={currentWord} onFinish={onFinish} key={wordComponentKey} />
               {phoneticConfig.isOpen && <Phonetic word={currentWord} />}
+              <MorphemeParse word={currentWord} />
               <Translation
                 trans={currentWord.trans.join('；')}
                 showTrans={shouldShowTranslation}

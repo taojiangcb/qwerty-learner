@@ -19,12 +19,13 @@ export const PRONUNCIATION_PHONETIC_MAP: Pronunciation2PhoneticMap = {
   id: 'id',
 }
 
+// 单词数据结构：定义单词的基本信息
 export type Word = {
-  name: string
-  trans: string[]
-  usphone: string
-  ukphone: string
-  notation?: string
+  name: string // 单词本身
+  trans: string[] // 单词的翻译/释义列表
+  usphone: string // 美式音标
+  ukphone: string // 英式音标
+  notation?: string // 可选的注释说明（如：用法、语法等补充信息）
 }
 
 export type WordWithIndex = Word & {
@@ -32,10 +33,12 @@ export type WordWithIndex = Word & {
   index: number
 }
 
-export type InfoPanelType = 'donate' | 'vsc' | 'community' | 'redBook'
+// 信息面板类型：定义可显示的信息面板种类
+export type InfoPanelType = 'donate' | 'vsc' | 'community' | 'redBook' // 捐赠面板|VSCode面板|社区面板|小红书面板
 
+// 信息面板状态：使用映射类型记录每个面板的显示状态
 export type InfoPanelState = {
-  [key in InfoPanelType]: boolean
+  [key in InfoPanelType]: boolean // 每个面板对应一个布尔值，true表示显示，false表示隐藏
 }
 
 export type LoopWordTimesOption = 1 | 3 | 5 | 8 | typeof Number.MAX_SAFE_INTEGER
