@@ -13,7 +13,7 @@ import type {
   WordDictationOpenBy,
   WordDictationType,
 } from '@/typings'
-import { MorphemeAnalysisOutput } from '@/typings/morphemeAnalysis'
+import type { MorphemeAnalysisOutput } from '@/typings/morphemeAnalysis'
 import type { ReviewRecord } from '@/utils/db/record'
 import { atom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
