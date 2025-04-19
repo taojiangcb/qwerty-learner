@@ -6,11 +6,18 @@ import MorphemeParse from './components/Morpheme'
 import Phonetic from './components/Phonetic'
 import Translation from './components/Translation'
 import WordComponent from './components/Word'
-import { usePrefetchPronunciationSound } from '@/hooks/usePronunciation'
-import { isReviewModeAtom, isShowPrevAndNextWordAtom, loopWordConfigAtom, phoneticConfigAtom, reviewModeInfoAtom } from '@/store'
+import usePronunciationSound, { usePrefetchPronunciationSound } from '@/hooks/usePronunciation'
+import {
+  currentWordAnalysis,
+  isReviewModeAtom,
+  isShowPrevAndNextWordAtom,
+  loopWordConfigAtom,
+  phoneticConfigAtom,
+  reviewModeInfoAtom,
+} from '@/store'
 import type { Word } from '@/typings'
-import { useAtomValue, useSetAtom } from 'jotai'
-import { useCallback, useContext, useMemo, useState } from 'react'
+import { useAtom, useAtomValue, useSetAtom } from 'jotai'
+import React, { useCallback, useContext, useMemo, useState } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
 
 export default function WordPanel() {
@@ -27,6 +34,8 @@ export default function WordPanel() {
   const setReviewModeInfo = useSetAtom(reviewModeInfoAtom)
   const isReviewMode = useAtomValue(isReviewModeAtom)
 
+  const [wordAnalysize] = useAtom(currentWordAnalysis)
+
   const prevIndex = useMemo(() => {
     const newIndex = state.chapterData.index - 1
     return newIndex < 0 ? 0 : newIndex
@@ -37,6 +46,25 @@ export default function WordPanel() {
   }, [state.chapterData.index, state.chapterData.words.length])
 
   usePrefetchPronunciationSound(nextWord?.name)
+
+  // 例句
+  const ui_exampleSentences = useMemo(() => {
+    if (wordAnalysize?.usage) {
+      console.log(wordAnalysize.usage.examples)
+      const { en, zh } = wordAnalysize.usage.examples[0]
+
+      if (en) {
+        console.log('en=====', en)
+        return (
+          <div className="mb-4 mt-4 text-center">
+            <p className="text-sm text-gray-500 dark:text-gray-400">{en}</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">{zh}</p>
+          </div>
+        )
+      }
+    }
+    return ''
+  }, [wordAnalysize])
 
   const reloadCurrentWordComponent = useCallback(() => {
     setWordComponentKey((old) => old + 1)
@@ -181,6 +209,7 @@ export default function WordPanel() {
                 onMouseEnter={() => handleShowTranslation(true)}
                 onMouseLeave={() => handleShowTranslation(false)}
               />
+              {ui_exampleSentences}
             </div>
           </div>
         )}

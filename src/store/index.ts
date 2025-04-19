@@ -13,6 +13,7 @@ import type {
   WordDictationOpenBy,
   WordDictationType,
 } from '@/typings'
+import { MorphemeAnalysisOutput } from '@/typings/morphemeAnalysis'
 import type { ReviewRecord } from '@/utils/db/record'
 import { atom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
@@ -122,6 +123,9 @@ export const wordDictationConfigAtom = atomForConfig('wordDictationConfig', {
 
 // 开始卡片显示时间
 export const dismissStartCardDateAtom = atomWithStorage<Date | null>(DISMISS_START_CARD_DATE_KEY, null)
+
+// 当前单词的分析结果
+export const currentWordAnalysis = atom<MorphemeAnalysisOutput | null>(null)
 
 // for dev test
 //   dismissStartCardDateAtom = atom<Date | null>(new Date())

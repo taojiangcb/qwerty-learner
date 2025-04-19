@@ -1,12 +1,14 @@
+import { currentWordAnalysis } from '@/store'
 import type { Word } from '@/typings'
 import type { MorphemeAnalysisOutput } from '@/typings/morphemeAnalysis'
 import { useMorphemeAnalysis } from '@/utils/db/morpheme'
+import { useAtom } from 'jotai'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 const LLM_API = import.meta.env.VITE_LANGCHAIN_API_URL
 
 function useAnalysisWord(word: Word): [boolean, MorphemeAnalysisOutput | undefined, () => void, unknown] {
-  const [analysis, setAnalysis] = React.useState<MorphemeAnalysisOutput>()
+  const [analysis, setAnalysis] = useAtom(currentWordAnalysis)
   const { saveMorphemeAnalysis, getMorphemeAnalysis } = useMorphemeAnalysis()
   const [isPending, setPending] = useState(false)
   const [error, setError] = useState<unknown>()
